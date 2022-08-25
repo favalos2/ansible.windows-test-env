@@ -961,8 +961,17 @@ class ActionModule(ActionBase):
             raise _ReturnResultException(msg, rc=rc, stdout=stdout, stderr=stderr)
         print(f'stdout is: {stdout}')
         lines = stdout.splitlines()
+        
         print(f'line what we are trying to pop {lines[len(lines) - 1]}')
-        #offset = int(lines.pop(-1))
+        
+        pop_res = ''
+        try:
+            pop_res = lines.pop(-1)
+            offset = int(pop_res)  
+        except:
+            print('lines.pop caused and issue')
+            print(f'pop res is {pop_res}" 
+            
         entries = []
         for l in lines:
             try:
@@ -970,13 +979,6 @@ class ActionModule(ActionBase):
             except getattr(json.decoder, 'JSONDecodeError', ValueError) as e:
                 msg = 'Failed to decode poll result json: %s' % to_native(e)
                 raise _ReturnResultException(msg, rc=rc, stdout=stdout, stderr=stderr)
-        if  'task' in entries:
-            if entries['task'] == 'search_result':
-                print('task is equal search_result')
-                offset = 0   
-            else:
-                print ('task is not equal search_result')
-                offset = int(lines.pop(-1)) 
 
         return entries, offset
 
