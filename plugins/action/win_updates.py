@@ -961,6 +961,7 @@ class ActionModule(ActionBase):
             raise _ReturnResultException(msg, rc=rc, stdout=stdout, stderr=stderr)
         print(f'stdout is: {stdout}')
         lines = stdout.splitlines()
+        print(f'line what we are trying to pop {lines[len(lines) - 1]}')
         offset = int(lines.pop(-1))
         entries = []
         for l in lines:
