@@ -959,7 +959,7 @@ class ActionModule(ActionBase):
         if rc != 0:
             msg = "Failed to poll update task, see rc, stdout, stderr for more info"
             raise _ReturnResultException(msg, rc=rc, stdout=stdout, stderr=stderr)
-
+        print(f'stdout is: {stdout}')
         lines = stdout.splitlines()
         offset = int(lines.pop(-1))
         entries = []
