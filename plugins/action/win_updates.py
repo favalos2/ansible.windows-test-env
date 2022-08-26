@@ -970,7 +970,7 @@ class ActionModule(ActionBase):
             offset = int(pop_res)  
         except:
             print('lines.pop caused and issue')
-            print(f'pop res is {pop_res}" )
+            print(f'pop res is {pop_res}' )
             
         entries = []
         for l in lines:
