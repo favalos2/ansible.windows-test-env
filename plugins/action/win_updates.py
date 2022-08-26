@@ -959,10 +959,10 @@ class ActionModule(ActionBase):
         if rc != 0:
             msg = "Failed to poll update task, see rc, stdout, stderr for more info"
             raise _ReturnResultException(msg, rc=rc, stdout=stdout, stderr=stderr)
-        print(f'stdout is: {stdout}')
+        #print(f'stdout is: {stdout}')
         lines = stdout.splitlines()
         
-        print(f'line what we are trying to pop {lines[len(lines) - 1]}')
+        #print(f'line what we are trying to pop {lines[len(lines) - 1]}')
         
         pop_res = ''
         try:
@@ -970,7 +970,7 @@ class ActionModule(ActionBase):
             offset = int(pop_res)  
         except:
             print('lines.pop caused and issue')
-            print(f'pop res is {pop_res}' )
+            #print(f'pop res is {pop_res}' )
             
         entries = []
         for l in lines:
@@ -998,6 +998,8 @@ class ActionModule(ActionBase):
         # common shell and to allow the psrp connection plugin to report the correct exit code without manually setting
         # $LASTEXITCODE for just that plugin.
         command = self._connection._shell._encode_script(command)
+        
+        print(f'this is the command that is causing the issue!!!: {command}')
 
         # FUTURE: Should we have a retry on a connection failure just in case an update brings the network down?
         rc, stdout, stderr = self._connection.exec_command(command, in_data=None, sudoable=False)
