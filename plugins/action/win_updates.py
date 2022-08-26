@@ -997,9 +997,9 @@ class ActionModule(ActionBase):
         # Need to wrap the command in our PowerShell encoded wrapper. This is done to align the command input to a
         # common shell and to allow the psrp connection plugin to report the correct exit code without manually setting
         # $LASTEXITCODE for just that plugin.
-        command = self._connection._shell._encode_script(command)
-        
         print(f'this is the command that is causing the issue!!!: {command}')
+        command = self._connection._shell._encode_script(command)      
+        
 
         # FUTURE: Should we have a retry on a connection failure just in case an update brings the network down?
         rc, stdout, stderr = self._connection.exec_command(command, in_data=None, sudoable=False)
